@@ -3,10 +3,14 @@ package steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+
+import org.testng.Assert;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.PrincipalPage;
 import pages.WithFilterPage;
+import pages.CreateAcountPage;
 import pages.PopUpLoginPage;
 
 public class CompuTrabajoSteps {
@@ -14,6 +18,7 @@ public class CompuTrabajoSteps {
     PrincipalPage pp = new PrincipalPage();
     WithFilterPage fp = new WithFilterPage();
     PopUpLoginPage plp= new PopUpLoginPage();
+    CreateAcountPage cap=new CreateAcountPage();
 
     @Given("un usuario navega a co.computrabajo.com")
     public void UserNavigateCT() {
@@ -25,10 +30,9 @@ public class CompuTrabajoSteps {
         pp.clickButtonSearch();
     }
     @When ("el usuario opciona {word} a la vacante, en el menu de la oferta {string} en {word}")
-    public void postulationOffer(String subMenu,String oferta,String lugar) throws InterruptedException{
+    public void postulationOffer(String subMenu,String oferta,String lugar){
         fp.clickMenuOffer(oferta);
         fp.clickMenuOfferOption(oferta,lugar,subMenu);
-       // Thread.sleep(2000);
     }
     @And("ingresa el cargo {word} y filtra el {word} por {string}")
     public void selectFilterPosition(String cargo ,String salario, String salV){
@@ -47,14 +51,20 @@ public class CompuTrabajoSteps {
         plp.insertEmail(correo);
         plp.clickButtonContinueLogin();
     }
-    //@And ("diligencia los datos de inscripcion y continua")
-    
-    
+    @And ("diligencia los datos de inscripcion {string},{string},{word},{word},{word},{word} y continua")
+    public void formCreateAcount(String nombres,String apellidos,String contrasena,String cargo,String Lugar,String captcha) throws InterruptedException{
+        cap.insertDataCreateAcount(nombres, apellidos, contrasena, cargo, Lugar, captcha);
+        cap.clickButtonContinueCreateAcount();
+        //Thread.sleep(5000);
+    }
     @Then("visualiza la oferta {string} en {word}")
     public void offerConfirmation(String oferta,String lugar) {
         fp.AssertionOffer(oferta);
         fp.AssertionPlace(oferta,lugar);
     }
-    //@Then ("visualiza error de codigo captcha")
-
+    @Then ("visualiza error de codigo captcha {string}")
+    public void errorCaptchaConfirmation(String mensajeCaptcha){
+        cap.assertMessageCaptcha(mensajeCaptcha);
+    }
+    
 }

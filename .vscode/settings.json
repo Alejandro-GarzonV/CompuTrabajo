@@ -5,4 +5,5 @@
     "cucumberautocomplete.syncfeatures":"test/features/*.feature", 
     "cucumberautocomplete.strictGherkincompletion":true,
     "cucumberautocomplete.strict GherkinValidation": true,
+    "java.debug.settings.onBuildFailureProceed": true,
 }
