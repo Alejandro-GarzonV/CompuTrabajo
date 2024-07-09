@@ -6,10 +6,6 @@ import org.testng.Assert;
 
 public class CreateAcountPage extends BasePage{
      
-    public CreateAcountPage(){
-        super(driver);
-    }
-
     private String name ="//input[@id='Name']";
     private String lastName ="//input[@id='SurName']";
     private String password ="//input[@id='Password']";
@@ -19,6 +15,11 @@ public class CreateAcountPage extends BasePage{
     private String captcha ="//input[@id='CaptchaInputText']";
     private String continueButton="//input[@id='continueButton']";
     private String answerCaptcha="//span[contains(text(),'Captcha incorrecto')]";
+
+    public CreateAcountPage(){
+        super(driver);
+    }
+
     public void insertDataCreateAcount(String names,String lastNames,String passwords,String positions,String place,String captchas){ 
         switchToNewTab();
         write(name, names);
@@ -40,6 +41,4 @@ public class CreateAcountPage extends BasePage{
         String actualText = mssg.getText().trim();
         Assert.assertEquals(actualText,msj,"las mensajes son distintas en la respuesta"); 
    }
-
-   
 }

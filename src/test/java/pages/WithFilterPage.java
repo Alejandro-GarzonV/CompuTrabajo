@@ -27,7 +27,6 @@ public class WithFilterPage extends BasePage{
     public void clickOnOptionFilter(String vOFilter) {
        clickOnFilterAndOption(vOFilter,optionFilter);
     }
-   // usandolos de esta manera se pueden reutilizar cuantas veces sea necesario y con cuantos filtros sea necesario 
     public void selectionFilters(String vFilter,String vOFilter){
         closeModalNotifications();
         clickOnFilter(vFilter);
@@ -51,6 +50,4 @@ public class WithFilterPage extends BasePage{
     public void clickMenuOfferOption(String offer,String place,String menuOption) {
        clickOnFilterAndOptions(offer,place,menuOption,artMenuOptions);
     }
-    
-
 }

@@ -1,11 +1,7 @@
 package steps;
 
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-
-import org.testng.Assert;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.PrincipalPage;
@@ -52,10 +48,9 @@ public class CompuTrabajoSteps {
         plp.clickButtonContinueLogin();
     }
     @And ("diligencia los datos de inscripcion {string},{string},{word},{word},{word},{word} y continua")
-    public void formCreateAcount(String nombres,String apellidos,String contrasena,String cargo,String Lugar,String captcha) throws InterruptedException{
+    public void formCreateAcount(String nombres,String apellidos,String contrasena,String cargo,String Lugar,String captcha){
         cap.insertDataCreateAcount(nombres, apellidos, contrasena, cargo, Lugar, captcha);
         cap.clickButtonContinueCreateAcount();
-        //Thread.sleep(5000);
     }
     @Then("visualiza la oferta {string} en {word}")
     public void offerConfirmation(String oferta,String lugar) {
@@ -66,5 +61,4 @@ public class CompuTrabajoSteps {
     public void errorCaptchaConfirmation(String mensajeCaptcha){
         cap.assertMessageCaptcha(mensajeCaptcha);
     }
-    
 }
