@@ -40,7 +40,6 @@ public class BasePage {
         find(locator).click();
     }
 
-
     public void  write (String locator, String KeyToSend){
         find(locator).clear();
         find(locator).sendKeys(KeyToSend);
@@ -58,6 +57,13 @@ public class BasePage {
             // No modal appeared within the short wait time, continue with the test.
         }
     }
-    
+    public void clickOnFilterAndOption(String valueFilter,String xpathFilter) {
+        String xpathFilterFinal = String.format(xpathFilter, valueFilter);
+        clickElement(xpathFilterFinal);
+    }
+    public void clickOnFilterAndOptions(String valueMenu,String valueSecondMenu,String valueOptionMenu,String xpathMenu) {
+        String xpathFilterFinal = String.format(xpathMenu,valueMenu,valueSecondMenu,valueOptionMenu);
+        clickElement(xpathFilterFinal);
+    }
     
 }

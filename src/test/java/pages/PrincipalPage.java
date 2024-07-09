@@ -26,5 +26,5 @@ public class PrincipalPage extends BasePage{
     public void clickButtonSearch(){
        clickElement(SearchButton);
     }
-
+    
 }

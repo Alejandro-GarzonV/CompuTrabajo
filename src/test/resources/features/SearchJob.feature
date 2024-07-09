@@ -1,12 +1,18 @@
 @Navigation
-Feature: Buscar y aplicar a oferta de empleo end to end 
+Feature: Buscar, aplicar y diligenciar una oferta de empleo
 
-    Scenario Outline: Buscar una oferta de empleo bajo condiciones especificas
+    Background: un usuario navega a la  pagina de computrabajo de colombia
     Given un usuario navega a co.computrabajo.com
+
+    Scenario Outline: Buscar una oferta de empleo bajo condiciones especificas y aplica
     When busca todas las ofertas en <Lugar>
     And ingresa el cargo <cargo> y filtra el <filtro1> por <opcfiltro1>
-    And selecciona el filtro <filtro2> por <opcfiltro2> y busca denuevo
-    Then viusaliza la oferta <oferta> en <Lugar>
+    And selecciona el filtro <filtro2> por <opcfiltro2> y busca de nuevo
+    Then visualiza la oferta <oferta> en <Lugar>
+    When el usuario opciona <Submenu> a la vacante, en el menu de la oferta <oferta> en <Lugar>
+    And inserta el correo <correo> ,continua el proceso
+    #And diligencia los datos de inscripcion y continua
+    #Then visualiza error de codigo captcha
     Examples:
-        |Lugar    | filtro1 | filtro2     |opcfiltro1          |opcfiltro2 |cargo| oferta                      |
-        |Guainía  | Salario | Experiencia |"Menos de $ 700.000"|"1 año"    |qa   |"Test automation Engineer QA"|
+        |Lugar    | filtro1 | filtro2     |opcfiltro1          |opcfiltro2 |cargo| oferta                      |Submenu   |correo         |
+        |Guainía  | Salario | Experiencia |"Menos de $ 700.000"|"1 año"    |qa   |"Test automation Engineer QA"|Postular  |prueba@test.com|
